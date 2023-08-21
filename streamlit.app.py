@@ -28,25 +28,25 @@ my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
 my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
-
 # New section to dispay fruityvice api response
 def get_fruityvice_data(this_fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    return fruityvice_normalized
-    
+    return fruityvice_normalized   
 # New section to display fruityvice api responce
-streamlit.header("Fruityvice Fruit Advice!")
-try:
-    fruit_choice = streamlit.text_input('What fruit would you like information about?')
-  if not fruit_choice:
-        streamlit.error("Please select a fruit to get information.")
-  else:
-      back_from_function = get_fruityvice_data(fruit_choice)
-        streamlit.dataframe(back_from_function)
-#streamlit.write('The user entered ', fruit_choice)
-
-except URLError as e
+streamlit.header('Fruityvice Fruit Advice!')
+ try:
+fruit_choice = streamlit.text_input('What fruit would you like information about?')
+if not fruit_choice:     
+       streamlit.error("Please select a fruit to get information.")
+   else:
+       back_from_function = get_fruityvice_data(fruit_choice)
+      streamlit.dataframe(back_from_function)
+ #streamlit.write('The user entered ', fruit_choice)
+ #streamlit.write('The user entered ', fruit_choice)
+ 
+ 
+ except URLError as e
 streamlit.error
 
 # streamlit.text(fruityvice_response.json())
