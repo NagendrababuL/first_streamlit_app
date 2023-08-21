@@ -34,19 +34,19 @@ def get_fruityvice_data(this_fruit_choice):
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized   
 # New section to display fruityvice api responce
-    streamlit.header('Fruityvice Fruit Advice!')
- try:
- fruit_choice = streamlit.text_input('What fruit would you like information about?')
-if not fruit_choice:     
-       streamlit.error("Please select a fruit to get information.")
+streamlit.header('Fruityvice Fruit Advice!')
+try:
+   fruit_choice = streamlit.text_input('What fruit would you like information about?')
+   if not fruit_choice:     
+        streamlit.error("Please select a fruit to get information.")
    else:
-       back_from_function = get_fruityvice_data(fruit_choice)
-      streamlit.dataframe(back_from_function)
+        back_from_function = get_fruityvice_data(fruit_choice)
+        streamlit.dataframe(back_from_function)
  #streamlit.write('The user entered ', fruit_choice)
  #streamlit.write('The user entered ', fruit_choice)
  
  
- except URLError as e
+except URLError as e
 streamlit.error
 
 # streamlit.text(fruityvice_response.json())
